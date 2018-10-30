@@ -1,4 +1,4 @@
-html, body , div {
+html, body {
     width: 100%;
     height: 100%;
 
@@ -6,13 +6,16 @@ html, body , div {
     padding: 0;
 
     overflow: hidden;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #video {
-    width: 100%;
-    height: 100%;
-
-    object-fit: fill;
+    overflow-x: hidden;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 #video-overlay {
@@ -20,6 +23,50 @@ html, body , div {
     height: 100%;
 
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: rgba(130, 181, 72, .5);
+}
+
+#login {
+    width: 30%;
+    height: 45%;
+
+    flex-direction: column;
+
+    background-color: white;
+}
+
+.login-text {
+    display: flex;
+    justify-content: center;
+
+    font-size: 30px;
+    margin-top: 2%;
+}
+
+.login-field {
+    width: 80%;
+    height: 7%;
+    margin-left: 10%;
+    margin-top: 2%;
+    padding-left: 2%;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+button:hover {
+    opacity: 0.8;
 }

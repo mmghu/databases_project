@@ -14,13 +14,18 @@
 
 <body>
     <div id="master">
-        <div id="video-wrapper">
-            <div id="video-overlay">
-
+        <video autoplay loop muted id="video">
+            <source src="../assets/stock_bar.mp4" type="video/mp4">
+        </video>
+        <div id="video-overlay">
+            <div id="login">
+                <div class="login-text" style="margin-top: 10%;">CompanyName</div>
+                <div class="login-text" style="margin-top: 5%; font-size: 20px; justify-content: initial; padding-left: 10%;">Username</div>
+                <input class="login-field" type="text" name="uname" required>
+                <div class="login-text" style="font-size: 20px; justify-content: initial; padding-left: 10%;">Password</div>
+                <input class="login-field" type="password" name="pword" required>
+                <button id="login-button" type="submit">Login</button>
             </div>
-            <video autoplay loop muted id="video">
-                <source src="../assets/stock_bar.mp4" type="video/mp4">
-            </video>
         </div>
     </div>
     <script src="../js/script.js"></script>
