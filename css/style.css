@@ -30,7 +30,7 @@ html, body {
     background-color: rgba(130, 181, 72, .5);
 }
 
-#login {
+.login-box {
     width: 30%;
     height: 50%;
 
@@ -49,7 +49,7 @@ html, body {
 
 .login-field {
     width: 80%;
-    height: 7%;
+    height: 25px;
     margin-left: 10%;
     margin-top: 2%;
     padding-left: 2%;
@@ -74,4 +74,18 @@ button:hover {
 #register-button {
     background-color: #0099CC;
     margin-top: 2%;
+}
+
+#register-button2 {
+    background-color: #0099CC;
+    margin-top: 2%;
+}
+
+#cancel-button {
+    background-color: #FF3030;
+    margin-top: 2%;
+}
+
+.hide {
+    display: none;
 }
