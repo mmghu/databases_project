@@ -1,20 +1,34 @@
 <?php
-
 $username = $_POST["uname"];
 $password = $_POST["pword"];
 
 // connect to mysql
-$Pass = 'Pepperjen(23';
+$Pass = ''; // insert your password
 $DB = 'lexHealth';
-$mysqli = new mysqli('127.0.0.1', 'root', $Pass, $DB);
+$conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 
-if(mysqli->connect_errno) {
-    echo "Could not connect to database\n";
-    exit;
+if (!$conn) {
+   echo "Connection failed: ". mysqli_connect_error(). "\n";
 }
 else {
-    // check username and password validity
-    $user_query = "
-    $user_result = mysqli_query
+    // check username
+    $user_query = "SELECT name, password FROM customer WHERE username = '$username'";
+    if(!$result = mysqli_query($conn,$user_query)) {
+	echo "Query failed: ". $mysqli->error. "\n";
+    }
+
+    else if(mysqli_num_rows($result) === 1) {
+	$row = mysqli_fetch_row($result);
+	if($row[1] === $password) {
+	    echo "Welcome, ". $row[0]. "!\n";
+	}
+	else {
+	    echo "Incorrect password, please try again.\n";
+	}
+    }
+    else {
+	echo "No user found! Please register or check your login credentials.\n";
+    }
 }
+mysqli_close($conn);
 ?>
