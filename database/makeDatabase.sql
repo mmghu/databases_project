@@ -26,6 +26,10 @@ CREATE TABLE restaurant
 	specialty VARCHAR(20) 
 	);
 
+LOAD DATA LOCAL INFILE './restaurants.txt'
+INTO TABLE restaurant
+FIELDS TERMINATED BY ',';
+
 CREATE TABLE menuitem
 	(
 	rid INT NOT NULL, 
