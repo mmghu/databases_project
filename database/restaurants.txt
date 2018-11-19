@@ -1,7 +1,7 @@
-\N,Rising Roll,38.037445,-84.505398,\NA,9,15,\NA,"Buffalo wrap"
-\N,Einsteins Bagels,38.033213,-84.508938,\NA,7,14,\NA,"Bagel w/cream cheese shmear"
-\N,Panda Express,38.041514,-84.498897,\NA,10,20,\NA,"Orange chicken"
-\N,Chick-Fil-A,38.041514,-84.498897,\NA,10,20,\NA,"Spicy chicken sandwhich"
-\N,Starbucks Willy-T,38.032914,-84.501997,\NA,7,20,\NA,"Caramel macchiato"
-\N,K-Lair,38.032883,-84.503772,\NA,10,0,\NA,"Chicken Tenders"
-\N,Subway,38.050015,-84.500021,\NA,8,15,\NA,"Meatball marinara"
+\N,Rising Roll,38.037445,-84.505398,\NA,9,15,\NA,\NA
+\N,Einsteins Bagels,38.033213,-84.508938,\NA,7,14,\NA,\NA
+\N,Panda Express,38.041514,-84.498897,\NA,10,20,\NA,\NA
+\N,Chick-Fil-A,38.041514,-84.498897,\NA,10,20,\NA,\NA
+\N,Starbucks Willy-T,38.032914,-84.501997,\NA,7,20,\NA,\NA
+\N,K-Lair,38.032883,-84.503772,\NA,10,0,\NA,\NA
+\N,Subway,38.050015,-84.500021,\NA,8,15,\NA,\NA
