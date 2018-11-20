@@ -36,15 +36,17 @@
                 <div class="login-text" style="margin-top: 10%;">CompanyName</div>
                 <div id="register-items">
                     <div class="login-text" style="margin-top: 5%; font-size: 20px; justify-content: initial; padding-left: 10%;">Username</div>
-                    <input class="login-field" type="text" name="uname" required>
-                    <div class="login-text" style="font-size: 20px; justify-content: initial; padding-left: 10%;">Email</div>
-                    <input class="login-field" type="text" name="uname" required>
-                    <div class="login-text" style="font-size: 20px; justify-content: initial; padding-left: 10%;">Password</div>
-                    <input class="login-field" type="password" name="pword" required>
-                    <div class="login-text" style="font-size: 20px; justify-content: initial; padding-left: 10%;">Re-type Password</div>
-                    <input class="login-field" type="password" name="pword" required>
-                    <button id="register-button2" type="submit" style="margin-top: 5%;">Register</button>
-                    <button id="cancel-button" type="submit">Cancel</button>
+		    <form action="../php/register.php" method="post">
+                    	<input class="login-field" type="text" name="uname" required>
+                    	<div class="login-text" style="font-size: 20px; justify-content: initial; padding-left: 10%;">Full Name</div>
+                    	<input class="login-field" type="text" name="fullname" required>
+                    	<div class="login-text" style="font-size: 20px; justify-content: initial; padding-left: 10%;">Password</div>
+                    	<input class="login-field" type="password" name="pword" required>
+                    	<div class="login-text" style="font-size: 20px; justify-content: initial; padding-left: 10%;">Re-type Password</div>
+                    	<input class="login-field" type="password" name="pword2" required>
+                    	<button id="register-button2" type="submit" style="margin-top: 5%;">Register</button>
+                    </form>
+		    <button id="cancel-button" type="submit">Cancel</button>
                 </div>
 
             </div>
