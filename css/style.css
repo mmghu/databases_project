@@ -9,6 +9,15 @@ html, body {
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
+.top-bar {
+    height:10%; 
+    width:100%;
+    background-color:blue;  
+    position:fixed; 
+    top:0px;
+    left:0px; 
+}
+
 #video {
     overflow-x: hidden;
     position: fixed;
