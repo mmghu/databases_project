@@ -1,9 +1,11 @@
 <?php
+session_start(); 
+
 $username = $_POST["uname"];
 $password = $_POST["pword"];
 
 // connect to mysql
-$Pass = ''; // insert your password
+$Pass = 'Perina3872!'; // insert your password
 $DB = 'lexHealth';
 $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 
@@ -19,8 +21,12 @@ else {
 
     else if(mysqli_num_rows($result) === 1) {
 	$row = mysqli_fetch_row($result);
-	if($row[1] === $password) {
-	    echo "Welcome, ". $row[0]. "!\n";
+    if($row[1] === $password) {
+        $_SESSION["name"] = $row[0];
+        $_SESSION["username"] = $username;
+        $_SESSION["password"] = $password;
+
+        header("Location: http://localhost:8000/html/main.php");
 	}
 	else {
 	    echo "Incorrect password, please try again.\n";
