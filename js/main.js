@@ -49,11 +49,11 @@ function updateTable() {
     //clear table
     $("#list").empty();  
     $("#list").append(
-           '<tr>' + 
+           '<th>' + 
            '<td> Name </td>' + 
            '<td> Rating </td>' + 
            '<td> Price Rating </td>' +
-          '</tr>' 
+          '</th>' 
     );
 
     //find markers in bounds of map
@@ -63,12 +63,9 @@ function updateTable() {
             //get info restaurants with these coordinates
             $.post("http://localhost:8000/php/restaurant_by_ip.php", {lat:pos.lat().toFixed(6), lon:pos.lng().toFixed(6)}, function(data){
                 data.forEach(function(res, i) { 
-                    console.log(res["name"]);
-                    console.log(res["rating"]);
-                    console.log(res["priceRating"]);
                    //add a spot on the table
                    $("#list").append(
-                           '<tr>' + 
+                           '<tr class = "row">' + 
                            '<td>' + res['name'] + '</td>' + 
                            '<td>' + res['rating'] + '</td>' + 
                            '<td>' + res['priceRating'] + '</td>' +

@@ -1,11 +1,8 @@
--- Create and select database
 DROP DATABASE lexHealth; 
 CREATE DATABASE lexHealth;
 
 USE lexHealth; 
 
--- ENTITIES 
--- Create 'user' table and upload data
 CREATE TABLE customer
 	(
 	username VARCHAR(20) PRIMARY KEY NOT NULL,
@@ -35,13 +32,14 @@ CREATE TABLE menuitem
 	rid INT NOT NULL, 
 	name VARCHAR(20) NOT NULL PRIMARY KEY,
 	price FLOAT, 
-	foodGroup VARCHAR(20),  
 	FOREIGN KEY (rid) REFERENCES restaurant(rid)
 	);
 
 CREATE TABLE ingredient
 (
-	name VARCHAR(20) PRIMARY KEY NOT NULL
+	name VARCHAR(20) NOT NULL,
+	foodGroup VARCHAR(20) NOT NULL, 
+    PRIMARY KEY (name, foodGroup)
 );
 
 CREATE TABLE contains
@@ -69,11 +67,13 @@ CREATE TABLE reviews
 
 CREATE TABLE favorites
 (
+    username VARCHAR(20) NOT NULL,
 	itemName VARCHAR(20) NOT NULL, 
 	rid INT NOT NULL, 
-	PRIMARY KEY (itemName, rid), 
+	PRIMARY KEY (username, rid, itemName), 
 	FOREIGN KEY (itemName) REFERENCES menuitem(name), 
-	FOREIGN KEY (rid) REFERENCES restaurant(rid)
+	FOREIGN KEY (rid) REFERENCES restaurant(rid), 
+    FOREIGN KEY (username) REFERENCES customer(username)
 );
 
 
@@ -81,7 +81,8 @@ CREATE TABLE restrictions
 (
 	username VARCHAR(20) NOT NULL, 
 	ingredientName VARCHAR(20) NOT NULL, 
-	PRIMARY KEY (username, ingredientName), 
+    foodGroup VARCHAR(20) NOT NULL, 
+	PRIMARY KEY (username, ingredientName, foodGroup), 
 	FOREIGN KEY (username) REFERENCES customer(username), 
 	FOREIGN KEY (ingredientName) REFERENCES ingredient(name)
 );
