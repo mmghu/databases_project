@@ -4,7 +4,7 @@ $fullname = trim($_POST["fullname"]);
 $password = trim($_POST["pword"]);
 $re_password = trim($_POST["pword2"]);
 
-$Pass = 'Pepperjen(23';
+$Pass = 'Perina3872!';
 $DB = 'lexHealth';
 $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 

@@ -1,4 +1,6 @@
 <?php
+session_start(); 
+
 $username = $_POST["uname"];
 $password = $_POST["pword"];
 
@@ -20,8 +22,11 @@ else {
     else if(mysqli_num_rows($result) === 1) {
 	$row = mysqli_fetch_row($result);
     if($row[1] === $password) {
-        header('Location: ../html/main.html');
-        exit();
+        $_SESSION["name"] = $row[0];
+        $_SESSION["username"] = $username;
+        $_SESSION["password"] = $password;
+
+        header("Location: http://localhost:8000/html/main.php");
 	}
 	else {
 	    echo "Incorrect password, please try again.\n";
@@ -30,7 +35,6 @@ else {
     else {
 	echo "No user found! Please register or check your login credentials.\n";
     }
-
 }
 mysqli_close($conn);
 ?>

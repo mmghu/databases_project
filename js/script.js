@@ -1,7 +1,3 @@
-$('#login-button').click(function(event) {
-    alert("Log in successful. Chase make this do something :P");
-})
-
 $('#register-button').click(function(event) {
     $("#login-items").fadeOut();
     $("#register-items").hide();
@@ -23,7 +19,6 @@ $('#cancel-button').click(function(event) {
 })
 
 $("#register-button2").click(function(event) {
-    alert("You've been registered! Chase make this doing something :P");
     $("#login-items").fadeOut();
     $("#register-items").fadeOut();
     $("#register").animate({height:"50%"}, function() {
