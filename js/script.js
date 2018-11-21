@@ -32,3 +32,19 @@ $("#register-button2").click(function(event) {
         $("#login-items").fadeIn();
     });
 })
+
+$('#home-button').click(function(event) {
+    alert("Home");
+})
+
+$('#browse').click(function(event) {
+    alert("Search");
+})
+
+$('#restaurants-button').click(function(event) {
+    alert("Restaurants");
+})
+
+$('#profile-button').click(function(event) {
+    alert("Profile");
+})
