@@ -33,7 +33,7 @@ function loadMain() {
             
     });
 
-
+    google.maps.event.addListener(map, 'dragend', function() { updateTable(); });
 }
 
 function success(position) {
@@ -47,8 +47,8 @@ function success(position) {
 
 function updateTable() {
     //clear table
-    $("#list tr").remove();  
-    $("#list > tbody:last-child").append(
+    $("#list").empty();  
+    $("#list").append(
            '<tr>' + 
            '<td> Name </td>' + 
            '<td> Rating </td>' + 
