@@ -31,8 +31,10 @@ session_start();
     
 
     <!-- display -->
-    <table id="list" style="position:fixed; width:30%; top:25%; background-color:purple; height:60%; left:7.5%;"> 
+    <div style="position:fixed; width:30%; top:25%; background-color:white; height:60%; left:7.5%; valign:top; border:2px solid black;">
+    <table id="list" style="width:100%; height:100%;"> 
     </table>
+    </div>
 
     <!-- js --> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
