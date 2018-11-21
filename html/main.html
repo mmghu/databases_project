@@ -9,13 +9,28 @@
     <meta name="author" content="SitePoint">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
-<body> 
-    <div class="top-bar"> </div>
-    <h1 style="position:fixed; width:100%; top:10%"><center>Welcome, </center></h1>   
-    <div id="map" style="position:fixed; width:50%; height:50%; left:25%; top:20%;background-color:black;">	
+<body>
+    <div class="top-bar">
+        <div class='nav-name'>Website Name</div>
+        <div id="search-div">
+            <input type="text" name="search">
+            <button type="submit" id="browse"><i class="fa fa-search"></i></button>
+        </div>
+
+        <div class="mini-wrapper" style='margin-left: 30%;'><div class='nav-name mini'>Restaurants</div></div>
+        <div class="mini-wrapper"><div class='nav-name mini'>Profile</div></div>
+
+    </div>
+</nav>
+
+    </div>
+    <h1 style="position:fixed; width:100%; top:10%"><center>Welcome, </center></h1>
+    <div id="map" style="position:fixed; width:50%; height:50%; left:25%; top:20%;background-color:black;">
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
