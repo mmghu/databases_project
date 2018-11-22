@@ -5,7 +5,7 @@ $username = $_POST["uname"];
 $password = $_POST["pword"];
 
 // connect to mysql
-$Pass = ''; // insert your password
+$Pass = 'Perina3872!'; // insert your password
 $DB = 'lexHealth';
 $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 
@@ -26,7 +26,7 @@ else {
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
 
-        header("Location: http://localhost:8000/html/profile.php");
+        header("Location: http://localhost:8000/html/main.php");
 	}
 	else {
 	    echo "Incorrect password, please try again.\n";

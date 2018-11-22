@@ -15,7 +15,8 @@ function loadMain() {
             var lon = res['longitude'];
             //plot each restaurant
             var marker = new google.maps.Marker({
-                   position: new google.maps.LatLng(lat,lon)
+                   position: new google.maps.LatLng(lat,lon),
+                   label: { fontWeight: 'bold', fontSize: '12px', text: res['name'] }
             });
             markers.push(marker); 
             marker.setMap(map); 

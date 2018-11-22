@@ -19,7 +19,21 @@ session_start();
 
 <body onload="loadMain()">
     <!-- nav bar --> 
-    <div class="top-bar">  
+    <div class="top-bar">
+        <div class='nav-name' id='home-button' onclick="window.location.href='http://localhost:8000/html/main.php'">
+            <img id="icon" src="http://localhost:8000/css/images/icon.png" alt="lexHealth"/>
+        </div>
+        <div id="search-div">
+            <input type="text" name="search" style="width:90%;">
+        </div>
+        <button type="submit" id="browse"> Browse</button>
+
+        <div class="mini-wrapper" style='margin-left: 30%;'>
+            <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
+        </div>
+        <div class="mini-wrapper">
+            <div class='nav-name mini' id='profile-button' onclick="window.location.href='http://localhost:8000/html/profile.php'"> My Profile</div>
+        </div>
     </div>
 
     <!-- header -->

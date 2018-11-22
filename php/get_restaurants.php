@@ -1,6 +1,6 @@
 <?php
 // connect to mysql
-$Pass = ''; // insert your password
+$Pass = 'Perina3872!'; // insert your password
 $DB = 'lexHealth';
 $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 

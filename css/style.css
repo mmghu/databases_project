@@ -166,7 +166,11 @@ button:hover {
 
 #browse {
     width: 10%;
-    height: 70%;
+    height: 80%;
     padding: 0px;
-    margin: 0px;
+    margin: auto;
+}
+
+#icon {
+    height:80%; 
 }

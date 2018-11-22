@@ -35,13 +35,14 @@ CREATE TABLE menuitem
 	rid INT NOT NULL, 
 	name VARCHAR(20) NOT NULL PRIMARY KEY,
 	price FLOAT, 
-	foodGroup VARCHAR(20),  
 	FOREIGN KEY (rid) REFERENCES restaurant(rid)
 	);
 
 CREATE TABLE ingredient
 (
-	name VARCHAR(20) PRIMARY KEY NOT NULL
+	name VARCHAR(20) NOT NULL,
+	foodGroup VARCHAR(20) NOT NULL,
+    PRIMARY KEY (name, foodGroup)  
 );
 
 CREATE TABLE contains
@@ -81,7 +82,9 @@ CREATE TABLE restrictions
 (
 	username VARCHAR(20) NOT NULL, 
 	ingredientName VARCHAR(20) NOT NULL, 
-	PRIMARY KEY (username, ingredientName), 
+    foodGroup VARCHAR(20) NOT NULL,
+	PRIMARY KEY (username, ingredientName, foodGroup), 
 	FOREIGN KEY (username) REFERENCES customer(username), 
-	FOREIGN KEY (ingredientName) REFERENCES ingredient(name)
+	FOREIGN KEY (ingredientName) REFERENCES ingredient(name), 
+    FOREIGN KEY (foodGroup) REFERENCES ingredient(foodGroup)
 );

@@ -1,4 +1,6 @@
 <?php
+session_start(); 
+
 $username = trim($_POST["uname"]);
 $fullname = trim($_POST["fullname"]);
 $password = trim($_POST["pword"]);
@@ -31,10 +33,13 @@ else {
     else {
     	$insert_query = "INSERT INTO customer (username, name, password) VALUES ('$username', '$fullname', '$password')";
     	if(mysqli_query($conn, $insert_query)) {
-	    echo "Successfuly registered as ". $username. "!\n";
+            $_SESSION["name"] = $fullname;
+            $_SESSION["username"] = $username;
+            $_SESSION["password"] = $password;
+            header("Location: http://localhost:8000/html/main.php");
     	}
         else {
- 	    echo "Registration failed, please try again.\n";
+     	    echo "Registration failed, please try again.\n";
     	}
     }
 }
