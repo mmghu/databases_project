@@ -1,0 +1,17 @@
+cheese,dairy
+chicken,meat
+banana,fruit
+oatmeal,grain
+cream cheese,dairy
+bagel,grain
+egg,dairy
+salmon,meat
+rice,grain
+carrot,vegetable
+beef,meat
+potato,vegetable
+milk,dairy
+coffee,vegetable
+meatball,meat
+ham,meat
+bread,grain
