@@ -5,7 +5,7 @@ function loadProfile(username) {
 }
 
 function loadFavorites(username) {
-    $.post("http://localhost:8000/php/get_favorites.php", {username:username}, function(data){
+    $.post("php/get_favorites.php", {username:username}, function(data){
         data.forEach(function(res, i) { 
             $("#favoritesList").append(
                     '<tr class="row">' + 
@@ -18,7 +18,7 @@ function loadFavorites(username) {
 }
 
 function loadPreferences(username) {
-    $.post("http://localhost:8000/php/get_preferences.php", {username:username}, function(data){
+    $.post("php/get_preferences.php", {username:username}, function(data){
         data.forEach(function(res, i) { 
             $("#preferenceList").append(
                     '<tr class="row">' + 
@@ -30,7 +30,7 @@ function loadPreferences(username) {
 }
 
 function loadReviews(username) {
-    $.post("http://localhost:8000/php/get_user_reviews.php", {username:username}, function(data){
+    $.post("php/get_user_reviews.php", {username:username}, function(data){
         data.forEach(function(res, i) {
            var review = res['review'].substring(0, 20) + "...";
             $("#reviews").append(

@@ -1,6 +1,6 @@
 <?php
 // connect to mysql
-$Pass = 'Perina3872!'; // insert your password
+$Pass = 'Pepperjen(23'; // insert your password
 $DB = 'lexHealth';
 $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 
@@ -17,12 +17,12 @@ else {
     if(!$result = mysqli_query($conn,$user_query)) {
 	echo "Query failed: ". $mysqli->error. "\n";
     }
- 
+
     if(mysqli_num_rows($result) > 0) {
-        $restaurants = array(); 
+        $restaurants = array();
         //read the rows of result
         while($row = mysqli_fetch_assoc($result)) {
-             $restaurants[] = $row;  
+             $restaurants[] = $row;
         }
 
         header('Content-type: application/json');

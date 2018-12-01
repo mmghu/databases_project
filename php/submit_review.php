@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-$username = trim($_POST["uname"]);
-$fullname = trim($_POST["fullname"]);
-$password = trim($_POST["pword"]);
-$re_password = trim($_POST["pword2"]);
+$username = trim($_POST["username"]);
+$rid = trim($_POST["rid"]);
+$timestamp = trim($_POST["timestamp"]);
+$rating = trim($_POST["rating"]);
+$review = trim($_POST["review"]);
 
 $Pass = 'yourpassword';
 $DB = 'lexHealth';
@@ -13,18 +14,11 @@ $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 if (!$conn) {
     echo "Connection failed: ". mysqli_connect_error(). "\n";
 }
-else if(empty($username)) {
-    echo "Please enter a username.\n";
+else if(empty($rating) || $rating > 5 || $rating < 0) {
+    echo "Please enter a valid rating.\n";
 }
-else if(empty($fullname)) {
-    echo "Please enter a full name.\n";
-}
-else if(empty($password)) {
-    echo "Please enter a password.\n";
-}
-else if($password != $re_password) {
-    echo "Please check your re-entered password.\n";
-}
+
+// in progress
 else {
     $search_query = "SELECT name FROM customer WHERE username = '$username'";
     if(mysqli_num_rows(mysqli_query($conn, $search_query)) === 1) {
