@@ -36,7 +36,7 @@ else {
             $_SESSION["name"] = $fullname;
             $_SESSION["username"] = $username;
             $_SESSION["password"] = $password;
-            header("Location: ../main.php");
+            header("Location: ../pages/main.php");
     	}
         else {
      	    echo "Registration failed, please try again.\n";

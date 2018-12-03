@@ -1,4 +1,5 @@
 <?php
+session_start();
 $restaurant = $_GET['restaurant'];
 
 // connect to mysql
@@ -43,7 +44,9 @@ else {
           $close_hour = $close_hour .' AM';
      }
 
-	$rid = $restaurant_info[0];
+     $rid = $restaurant_info[0];
+     $_SESSION["rid"] = $rid;
+     $_SESSION["restaurant"] = $restaurant;
      $latitude = $restaurant_info[2];
      $longitude = $restaurant_info[3];
      $price = $restaurant_info[4];
@@ -51,7 +54,7 @@ else {
      $specialty = $restaurant_info[9];
 
 	// reviews query
-	$review_query = mysqli_query($conn, "SELECT * FROM reviews WHERE rid = '$restaurant_info[0]'");
+	$review_query = mysqli_query($conn, "SELECT * FROM reviews WHERE rid = '$restaurant_info[0]' ORDER BY timestamp DESC");
 }
 mysqli_close($conn);
 ?>
@@ -71,7 +74,7 @@ mysqli_close($conn);
 <body>
 	<!-- nav bar -->
      <div class="top-bar">
-         <div class='nav-name' id='home-button' onclick="window.location.href='../main.php'">
+         <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
              <img id="icon" src="../css/images/icon.png" alt="lexHealth"/>
          </div>
          <div id="search-div">
@@ -83,36 +86,50 @@ mysqli_close($conn);
              <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
          </div>
          <div class="mini-wrapper">
-             <div class='nav-name mini' id='profile-button' onclick="window.location.href='../profile.php'"> My Profile</div>
+             <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> My Profile</div>
          </div>
      </div>
 
      <!-- restaurant info -->
-     <div style="position:fixed; top:5%">
+     <div style="position:fixed; top:5%; width:100%;">
 	<h1><?php echo $restaurant ?></h1>
 	<h3><?php echo 'Open Hours: '. $open_hour. '-'. $close_hour?></h3>
-	<h3><?php echo 'latitude: '. $latitude. ', longitude: '. $longitude?></h3>
+	<h3><?php echo 'latitude: '. $latitude?></h3>
+	<h3><?php echo 'longitude: '. $longitude?></h3>
+	</div>
 
+ 
 	<!-- review section -->
-	<div style="position:relative; top:10%">
-	     <h2>Reviews</h2>
-	     <dl style="position:relative; left:2%">
-		<?php
-		    while($review = $review_query->fetch_assoc()){
-			echo '<dt>'. $review['rating']. '/5</dt>';
-			echo '<dd>'. $review['review']. '</dd>';
-		    }
-		?>
-	     </dl>
-	     <h3>Submit a Review</h3>
-	     <form action="./php/submit_review.php/?rid=<?php echo $rid>" method="post">
-			Username: <textarea name="username" rows="1" cols="30"></textarea>
-	     	<?php echo 'How was '. $restaurant. '? '?> <textarea name="rating" rows="1" cols="1"></textarea> / 5</ br>
+	<div style="position:fixed; top:30%; width:50%;left:0%;">
+	     <h2>Submit a Review</h2>
+	     <form action="../php/submit_review.php/?rid=<?php echo $rid?>" method="post">
+            <?php echo 'How was '. $restaurant. '? '?> 
+            <textarea name="rating" rows="1" cols="1"></textarea> / 5</ br>
 			<textarea name="review" rows="6" cols="80"></textarea>
 		<button id="submit_review" type="submit" style="position:relative;right:7%">Submit</button>
 	     </form>
-	</div>
      </div>
+
+    <!--past reviews-->
+	<div style="position:fixed; top:5%; right:0%; width:50%;">
+	     <h2>Reviews</h2>
+	     <dl style="position:relative; left:2%">
+        <?php
+        $length = 10;
+        $i = 0;
+        while($review = $review_query->fetch_assoc()){
+            if($i < $length) {
+                echo '<dt>'. $review['timestamp'] . " " . $review['username'];
+                echo '<dd>'. $review['rating'] . '/5: ' . $review['review']. '</dd>';
+            }
+            $i = $i + 1;
+		    }
+		?>
+	     </dl>
+     </div>
+
+
+
 </body>
 
 </html>

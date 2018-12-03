@@ -13,7 +13,15 @@ session_start();
     <meta name="description" content="Lexington food according to your health needs.">
     <meta name="author" content="SitePoint">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/main.js"></script>
+    <!-- google maps -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRvaTL4If1SfVTXDalSe9aJwU7TQzP8D8">
+    </script>
 
 </head>
 
@@ -21,7 +29,7 @@ session_start();
     <!-- nav bar -->
     <div class="top-bar">
         <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
-            <img id="icon" src="css/images/icon.png" alt="lexHealth"/>
+            <img id="icon" src="../css/images/icon.png" alt="lexHealth"/>
         </div>
         <div id="search-div">
             <input type="text" name="search" style="width:90%;">
@@ -50,13 +58,6 @@ session_start();
     </table>
     </div>
 
-    <!-- js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/main2.js"></script>
-    <!-- google maps -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRvaTL4If1SfVTXDalSe9aJwU7TQzP8D8">
-    </script>
 
 </body>
 

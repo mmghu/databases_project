@@ -26,7 +26,7 @@ else {
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
 
-        header("Location: ../main.php");
+        header("Location: ../pages/main.php");
 	}
 	else {
 	    echo "Incorrect password, please try again.\n";

@@ -13,14 +13,14 @@ session_start();
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
 
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body onload="loadProfile('<?php echo $_SESSION['username'] ?>')">
     <div class="top-bar">
-        <div class='nav-name' id='home-button' onclick="window.location.href='main.php'">
-            <img id="icon" src="css/images/icon.png" alt="lexHealth"/>
+        <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
+            <img id="icon" src="../css/images/icon.png" alt="lexHealth"/>
         </div>
         <div id="search-div">
             <input type="text" name="search" style="width:90%;">
@@ -31,7 +31,7 @@ session_start();
             <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
         </div>
         <div class="mini-wrapper">
-            <div class='nav-name mini' id='profile-button' onclick="window.location.href='profile.php'"> My Profile</div>
+            <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> My Profile</div>
         </div>
 
     </div>

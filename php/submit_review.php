@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$username = trim($_POST["username"]);
-$rid = trim($_POST["rid"]);
-$timestamp = trim($_POST["timestamp"]);
+$username = $_SESSION["username"];
+$rid = $_SESSION["rid"];
+$restaurant = $_SESSION["restaurant"];
 $rating = trim($_POST["rating"]);
 $review = trim($_POST["review"]);
 
@@ -20,22 +20,14 @@ else if(empty($rating) || $rating > 5 || $rating < 0) {
 
 // in progress
 else {
-    $search_query = "SELECT name FROM customer WHERE username = '$username'";
-    if(mysqli_num_rows(mysqli_query($conn, $search_query)) === 1) {
-	echo "Username taken, please try another.\n";
-    }
-    else {
-    	$insert_query = "INSERT INTO customer (username, name, password) VALUES ('$username', '$fullname', '$password')";
-    	if(mysqli_query($conn, $insert_query)) {
-            $_SESSION["name"] = $fullname;
-            $_SESSION["username"] = $username;
-            $_SESSION["password"] = $password;
-            header("Location: ../main.php");
-    	}
+        $t = date("Y-m-d H:i:s");
+        $insert_query = "INSERT INTO reviews(username, rid, review, rating, timestamp) VALUES ('$username', '$rid', '$review', $rating, '$t')";    	
+        if(mysqli_query($conn, $insert_query)) {
+            header("Location: ../../pages/restaurant.php?restaurant="."$restaurant");
+        }
         else {
-     	    echo "Registration failed, please try again.\n";
-    	}
-    }
+            echo $insert_query;
+        }
 }
 mysqli_close($conn);
 ?>

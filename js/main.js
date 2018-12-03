@@ -8,7 +8,7 @@ function loadMain() {
         zoom: 15 });     
 
     //mark all the restaurants on map
-    $.post("php/get_restaurants.php", function(data){
+    $.post("../php/get_restaurants.php", function(data){
         data.forEach(function(res, i) { 
             //get each coordinate
             var lat = res['latitude'];
@@ -61,12 +61,12 @@ function updateTable() {
         var pos = markers[i].getPosition();
         if(map.getBounds().contains(pos)) {
             //get info restaurants with these coordinates
-            $.post("php/restaurant_by_ip.php", {lat:pos.lat().toFixed(6), lon:pos.lng().toFixed(6)}, function(data){
+            $.post("../php/restaurant_by_ip.php", {lat:pos.lat().toFixed(6), lon:pos.lng().toFixed(6)}, function(data){
                 data.forEach(function(res, i) { 
                    //add a spot on the table
                    $("#list").append(
                            '<tr class = "row">' + 
-                           "<td><a href='php/restaurant.php?restaurant=" + res['name'] +"'>" + res['name'] + "</a></td>" + 
+                           "<td><a href='../pages/restaurant.php?restaurant=" + res['name'] +"'>" + res['name'] + "</a></td>" + 
                            '<td>' + res['rating'] + '</td>' + 
                            '<td>' + res['priceRating'] + '</td>' +
                            '</tr>' 
