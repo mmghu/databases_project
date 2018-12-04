@@ -104,7 +104,9 @@ mysqli_close($conn);
 	     <h2>Submit a Review</h2>
 	     <form action="../php/submit_review.php/?rid=<?php echo $rid?>" method="post">
             <?php echo 'How was '. $restaurant. '? '?> 
-            <textarea name="rating" rows="1" cols="1"></textarea> / 5</ br>
+  		<label for="bad">1</label>
+                <input name="rating" type="range" min="1" max="5" step="1"></textarea></ br>
+                <label for="">5</label>
 			<textarea name="review" rows="6" cols="80"></textarea>
 		<button id="submit_review" type="submit" style="position:relative;right:7%">Submit</button>
 	     </form>
