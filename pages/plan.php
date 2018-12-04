@@ -10,18 +10,6 @@ if (!$conn) {
    echo "Connection failed: ". mysqli_connect_error(). "\n";
 }
 else {
-
-     $rid = $restaurant_info[0];
-     $_SESSION["rid"] = $rid;
-     $_SESSION["restaurant"] = $restaurant;
-     $latitude = $restaurant_info[2];
-     $longitude = $restaurant_info[3];
-     $price = $restaurant_info[4];
-     $rating = $restaurant_info[8];
-     $specialty = $restaurant_info[9];
-
-	// reviews query
-	$review_query = mysqli_query($conn, "SELECT * FROM reviews WHERE rid = '$restaurant_info[0]' ORDER BY timestamp DESC");
 }
 mysqli_close($conn);
 ?>
@@ -35,10 +23,17 @@ mysqli_close($conn);
     <meta name="author" content="SitePoint">
 
     <link rel="stylesheet" href="../css/style.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/plan.js"></script>
+    <!-- google maps -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRvaTL4If1SfVTXDalSe9aJwU7TQzP8D8">
+    </script>
 
 </head>
 
-<body>
+<body onload="load()">
 	<!-- nav bar -->
      <div class="top-bar">
          <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
@@ -50,7 +45,7 @@ mysqli_close($conn);
          <button type="submit" id="browse"> Browse</button>
         
         <div class="mini-wrapper">
-            <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> Plan</div>
+            <div class='nav-name mini' id='plan-button' onclick="window.location.href='./plan.php'"> Plan</div>
         </div>
 
          <div class="mini-wrapper" style='margin-left: 30%;'>
@@ -61,45 +56,24 @@ mysqli_close($conn);
          </div>
      </div>
 
-     <!-- restaurant info -->
-     <div style="position:fixed; top:5%; width:100%;">
-	<h1><?php echo $restaurant ?></h1>
-	<h3><?php echo 'Open Hours: '. $open_hour. '-'. $close_hour?></h3>
-	<h3><?php echo 'latitude: '. $latitude?></h3>
-	<h3><?php echo 'longitude: '. $longitude?></h3>
-	</div>
+    <div style="top:10%; left:2.5%;  position:fixed; margin:auto; width:45%; text-align:center; height:80%; border-style:solid;">
+       <h1>Plan your meal</h1> 
+        <!--time-->
+       <h2>When are you eating?</h2>
+        <input type="time" name="time" min="0:00" max="24:00" required> 
+        
+        <!--location-->
+       <h2 style="display:inline; ">Use your location? </h2> 
+       <input type="checkbox" style="display:inline;" name="location"> 
+        <div id="map" style="height:25%; width:60%; display:inline-block; background-color:black; "> </div>
+         
+        <!--restriction-->
+       <h2>Dietary restrictions </h2>
+    </div>
 
- 
-	<!-- review section -->
-	<div style="position:fixed; top:30%; width:50%;left:0%;">
-	     <h2>Submit a Review</h2>
-	     <form action="../php/submit_review.php/?rid=<?php echo $rid?>" method="post">
-        <?php echo 'How was '. $restaurant. '? '?> 
-                <label for="bad">1</label>
-                <input name="rating" type="range" min="1" max="5" step="1"></textarea></ br>
-                <label for="">5</label>
-		<textarea name="review" rows="6" cols="80"></textarea>
-		<button id="submit_review" type="submit" style="position:relative;right:7%">Submit</button>
-	     </form>
-     </div>
+    <div id="display" style="border-style:solid; width:45%; position:fixed; top:10%; right:2.5%; height:80%; ">
 
-    <!--past reviews-->
-	<div style="position:fixed; top:5%; right:0%; width:50%;">
-	     <h2>Reviews</h2>
-	     <dl style="position:relative; left:2%">
-        <?php
-        $length = 10;
-        $i = 0;
-        while($review = $review_query->fetch_assoc()){
-            if($i < $length) {
-                echo '<dt>'. $review['timestamp'] . " " . $review['username'];
-                echo '<dd>'. $review['rating'] . '/5: ' . $review['review']. '</dd>';
-            }
-            $i = $i + 1;
-		    }
-		?>
-	     </dl>
-     </div>
+    </div>`
 </body>
 
 </html>

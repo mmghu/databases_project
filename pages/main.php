@@ -37,7 +37,7 @@ session_start();
         <button type="submit" id="browse"> Browse</button>
         
         <div class="mini-wrapper">
-            <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> Plan</div>
+            <div class='nav-name mini' id='plan-button' onclick="window.location.href='./plan.php'"> Plan</div>
         </div>
 
         <div class="mini-wrapper" style='margin-left: 30%;'>

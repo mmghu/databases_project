@@ -68,10 +68,14 @@ mysqli_close($conn);
     <meta name="author" content="SitePoint">
 
     <link rel="stylesheet" href="../css/style.css">
+    <!-- google maps -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRvaTL4If1SfVTXDalSe9aJwU7TQzP8D8">
+    </script>
 
 </head>
 
-<body>
+<body onload = "onload(<?php echo $latitude ?>, <?php echo $longitude ?>, '<?php echo $restaurant ?>')">
 	<!-- nav bar -->
      <div class="top-bar">
          <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
@@ -90,30 +94,36 @@ mysqli_close($conn);
          </div>
      </div>
 
-     <!-- restaurant info -->
-     <div style="position:fixed; top:5%; width:100%;">
-	<h1><?php echo $restaurant ?></h1>
-	<h3><?php echo 'Open Hours: '. $open_hour. '-'. $close_hour?></h3>
-	<h3><?php echo 'latitude: '. $latitude?></h3>
-	<h3><?php echo 'longitude: '. $longitude?></h3>
-	</div>
+        
+    <div style="width:50%; top:10%; height:100%; position:fixed; left:0%;"> 
+        <!-- restaurant info -->
+        <div style="position:fixed; left:0%; width:50%; height:40%; top:10%; margin:0px;"> 
+            <h1><?php echo $restaurant ?></h1>
+            <h3><?php echo 'Open Hours: '. $open_hour. '-'. $close_hour?></h3>
+            <h3><?php echo 'latitude: '. $latitude?></h3>
+            <h3><?php echo 'longitude: '. $longitude?></h3>
+        </div>
+        <div id="map" style="position:fixed; height:40%; left:40%; width:50%; top:5%; margin:0px; background-color:black;">
+        
+        </div>
 
- 
-	<!-- review section -->
-	<div style="position:fixed; top:30%; width:50%;left:0%;">
-	     <h2>Submit a Review</h2>
-	     <form action="../php/submit_review.php/?rid=<?php echo $rid?>" method="post">
-        <?php echo 'How was '. $restaurant. '? '?> 
-                <label for="bad">1</label>
-                <input name="rating" type="range" min="1" max="5" step="1"></textarea></ br>
-                <label for="">5</label>
-		<textarea name="review" rows="6" cols="80"></textarea>
-		<button id="submit_review" type="submit" style="position:relative;right:7%">Submit</button>
-	     </form>
-     </div>
+        <!-- review section -->
+        <div style="position:fixed; top:50%; width:50%;left:0%; height:60%;">
+            <h2>Submit a Review</h2>
+            <form action="../php/submit_review.php/?rid=<?php echo $rid?>" method="post">
+            <?php echo 'How was '. $restaurant. '? '?> 
+                    <label for="bad">1</label>
+                    <input name="rating" type="range" min="1" max="5" step="1"></textarea></ br>
+                    <label for="">5</label>
+                    <textarea name="review" rows="6" cols="80"></textarea>
+                    <button id="submit_review" type="submit" style="position:relative;right:7%">Submit</button>
+            </form>
+        </div>
+    </div>
+
 
     <!--past reviews-->
-	<div style="position:fixed; top:5%; right:0%; width:50%;">
+    <div style="position:fixed; top:5%; right:0%; width:50%;">
 	     <h2>Reviews</h2>
 	     <dl style="position:relative; left:2%">
         <?php
@@ -130,7 +140,22 @@ mysqli_close($conn);
 	     </dl>
      </div>
 
+<script>
+    var map; 
 
+    function onload(lat, lon, res) {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: lat, lng: lon},
+            zoom: 15 });     
+        
+        var marker = new google.maps.Marker({
+               position: new google.maps.LatLng(lat,lon),
+               label: { fontWeight: 'bold', fontSize: '12px', text: res}
+        });
+        marker.setMap(map); 
+    }
+
+</script>
 
 </body>
 
