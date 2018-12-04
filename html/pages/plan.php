@@ -48,6 +48,10 @@ mysqli_close($conn);
              <input type="text" name="search" style="width:90%;">
          </div>
          <button type="submit" id="browse"> Browse</button>
+        
+        <div class="mini-wrapper">
+            <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> Plan</div>
+        </div>
 
          <div class="mini-wrapper" style='margin-left: 30%;'>
              <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
@@ -96,9 +100,6 @@ mysqli_close($conn);
 		?>
 	     </dl>
      </div>
-
-
-
 </body>
 
 </html>

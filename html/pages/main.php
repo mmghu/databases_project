@@ -43,6 +43,7 @@ session_start();
         <div class="mini-wrapper" style='margin-left: 30%;'>
             <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
         </div>
+
         <div class="mini-wrapper">
             <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> My Profile</div>
         </div>
