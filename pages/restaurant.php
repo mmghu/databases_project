@@ -50,11 +50,16 @@ else {
      $latitude = $restaurant_info[2];
      $longitude = $restaurant_info[3];
      $price = $restaurant_info[4];
-     $rating = $restaurant_info[8];
-     $specialty = $restaurant_info[9];
+     $rating = $restaurant_info[7];
+     $_SESSION["rating"] = $rating;
+     $specialty = $restaurant_info[8];
 
 	// reviews query
 	$review_query = mysqli_query($conn, "SELECT * FROM reviews WHERE rid = '$restaurant_info[0]' ORDER BY timestamp DESC");
+
+	// items query
+	$item_query = mysqli_query($conn, "SELECT * FROM menuitem WHERE rid = '$restaurant_info[0]'");
+	
 }
 mysqli_close($conn);
 ?>
@@ -103,10 +108,11 @@ mysqli_close($conn);
          </div>
      </div>
         
-    <div style="width:50%; top:10%; height:100%; position:fixed; left:0%;"> 
+     <div style="width:50%; top:10%; height:100%; position:fixed; left:0%;">
         <!-- restaurant info -->
-        <div style="position:fixed; left:0%; width:50%; height:40%; top:10%; margin:0px;"> 
+        <div style="position:fixed; left:2%; width:50%; top:10%; margin:0px;"> 
             <h1><?php echo $restaurant ?></h1>
+	    <h2><?php echo $rating ?>/5</h2>
             <h3><?php echo 'Open Hours: '. $open_hour. '-'. $close_hour?></h3>
             <h3><?php echo 'latitude: '. $latitude?></h3>
             <h3><?php echo 'longitude: '. $longitude?></h3>
@@ -115,23 +121,50 @@ mysqli_close($conn);
         
         </div>
 
-        <!-- review section -->
-        <div style="position:fixed; top:50%; width:50%;left:0%; height:60%;">
-            <h2>Submit a Review</h2>
-            <form action="../php/submit_review.php/?rid=<?php echo $rid?>" method="post">
-            <?php echo 'How was '. $restaurant. '? '?> 
-                    <label for="bad">1</label>
-                    <input name="rating" type="range" min="1" max="5" step="1"></textarea></ br>
-                    <label for="">5</label>
-                    <textarea name="review" rows="6" cols="80"></textarea>
-                    <button id="submit_review" type="submit" style="position:relative;right:7%">Submit</button>
-            </form>
-        </div>
-    </div>
+	 <!-- featured items -->
+        <div style="position:fixed; top:10%; width:50%; right:0%;">
+            <h2>Featured Items</h2>
+            <dl style="position:relative; left:2%">
+                <?php
+                    while($item = $item_query->fetch_assoc()) {
+                        echo '<dt style="font-weight:bold;">'. $item['name'] . " - $" . $item['price'] . '</dt>';
 
+                        $query = "SELECT * FROM contains WHERE rid = $restaurant_info[0] AND name = '$item[name]'";
+                        $Pass = 'yourpassword'; // insert your password
+                        $DB = 'lexHealth';
+                        $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
+
+                        $contains_query = mysqli_query($conn, $query);
+
+                        $ingredient = $contains_query->fetch_assoc();
+                        echo "<dt> $ingredient[ingredientName]";
+                        while($ingredient = $contains_query->fetch_assoc())
+                        {
+                            echo ", $ingredient[ingredientName]";
+                        }
+                        echo "</dt>";
+                        mysqli_close($conn);
+                    }
+                ?>
+            </dl>
+        </div>
+
+	<!-- review section -->
+        <div style="position:fixed; top:50%; width:50%;left:2%;">
+             <h2>Submit a Review</h2>
+             <form action="../php/submit_review.php/?rid=<?php echo $rid?>" method="post">
+        <?php echo 'How was '. $restaurant. '?'?>
+                <label for="bad">1</label>
+                <input name="rating" type="range" min="1" max="5" step="1"></textarea>
+                <label for="">5</label>
+                <br /><br />
+                <textarea name="review" rows="6" cols="120"></textarea>
+                <button id="submit_review" type="submit" style="position:relative;right:7%">Submit</button>
+             </form>
+     </div>
 
     <!--past reviews-->
-    <div style="position:fixed; top:5%; right:0%; width:50%;">
+    <div style="position:fixed; top:50%; right:0%; width:50%;">
 	     <h2>Reviews</h2>
 	     <dl style="position:relative; left:2%">
         <?php
@@ -139,7 +172,7 @@ mysqli_close($conn);
         $i = 0;
         while($review = $review_query->fetch_assoc()){
             if($i < $length) {
-                echo '<dt>'. $review['timestamp'] . " " . $review['username'];
+                echo '<dt style="font-weight: bold">'. $review['timestamp'] . " " . $review['username'] . '</dt>';
                 echo '<dd>'. $review['rating'] . '/5: ' . $review['review']. '</dd>';
             }
             $i = $i + 1;
@@ -147,6 +180,7 @@ mysqli_close($conn);
 		?>
 	     </dl>
      </div>
+	</div>
 
 <script>
     var map; 
