@@ -27,4 +27,22 @@ Meatball sub,7,bread
 Meatball sub,7,meatball
 Spicy Italian,7,ham
 Spicy Italian,7,bread
-
+el Producto,8,tortilla
+el Producto,8,pork
+el Producto,8,slaw
+el Producto,8,salsa
+el Producto,8,avocado
+el Producto,8,jack chz
+Tater Tots,8,potato
+Curly Fries,8,potato
+Chicken Burrito,9,chicken
+Chicken Burrito,9,tortilla
+Chips and Guac,9,guacamole
+Chips and Salsa,9,salsa
+Burger,10,beef
+Burger,10,bread
+Burger,10,cheese
+Burger,10,mayonaise
+Fries,10,potato
+Onion Rings,10,onion
+Onion Rings,10,lard

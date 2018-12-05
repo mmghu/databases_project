@@ -56,9 +56,10 @@ mysqli_close($conn);
         </div>
 
          <div class="mini-wrapper" >
-             <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
+             <div class='nav-name mini' id='restaurants-button' onclick="window.location.href='./restaurants.php'"> Restaurants</div>
          </div>
-         <div class="mini-wrapper">
+
+	 <div class="mini-wrapper">
              <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> My Profile</div>
          </div>
      </div>

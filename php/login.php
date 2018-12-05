@@ -29,11 +29,17 @@ else {
         header("Location: ../pages/main.php");
 	}
 	else {
-	    echo "Incorrect password, please try again.\n";
+		echo '<script language="javascript">';
+        	echo 'alert("Incorrect password.");';
+		echo 'window.location.href="../index.html";';
+        	echo '</script>';
 	}
     }
     else {
-	echo "No user found! Please register or check your login credentials.\n";
+	echo '<script language="javascript">';
+        echo 'alert("No user found! Please register or check your login credentials.");';
+        echo 'window.location.href="../index.html";';
+        echo '</script>';
     }
 }
 mysqli_close($conn);

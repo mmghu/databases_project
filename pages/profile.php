@@ -41,9 +41,10 @@ session_start();
             <div class='nav-name mini' id='plan-button' onclick="window.location.href='./plan.php'"> Plan</div>
         </div>
 
-         <div class="mini-wrapper" >
-             <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
+	 <div class="mini-wrapper" >
+             <div class='nav-name mini' id='restaurants-button' onclick="window.location.href='./restaurants.php'"> Restaurants</div>
          </div>
+
          <div class="mini-wrapper">
              <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> My Profile</div>
          </div>

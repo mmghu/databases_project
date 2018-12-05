@@ -16,7 +16,7 @@ else {
         $restaurant_query = mysqli_query($conn, "SELECT * FROM restaurant WHERE name = '$restaurant'");
         $restaurant_info = mysqli_fetch_row($restaurant_query);
 
-        $open_hour = $restaurant_info[5];
+        $open_hour = $restaurant_info[6];
         if($open_hour > 12) {
                 $open_hour = $open_hour%12 .' PM';
         }
@@ -30,7 +30,7 @@ else {
                 $open_hour = $open_hour .' AM';
         }
 
-     $close_hour = $restaurant_info[6];
+     $close_hour = $restaurant_info[7];
      if($close_hour > 12) {
           $close_hour = $close_hour%12 .' PM';
      }
@@ -47,12 +47,14 @@ else {
      $rid = $restaurant_info[0];
      $_SESSION["rid"] = $rid;
      $_SESSION["restaurant"] = $restaurant;
-     $latitude = $restaurant_info[2];
-     $longitude = $restaurant_info[3];
-     $price = $restaurant_info[4];
-     $rating = $restaurant_info[7];
+     $address = $restaurant_info[2];
+     $latitude = $restaurant_info[3];
+     $longitude = $restaurant_info[4];
+     $price = $restaurant_info[5];
+     $rating = $restaurant_info[8];
      $_SESSION["rating"] = $rating;
-     $specialty = $restaurant_info[8];
+     $specialty = $restaurant_info[9];
+     $description = $restaurant_info[10];
 
 	// reviews query
 	$review_query = mysqli_query($conn, "SELECT * FROM reviews WHERE rid = '$restaurant_info[0]' ORDER BY timestamp DESC");
@@ -101,9 +103,10 @@ mysqli_close($conn);
         </div>
 
          <div class="mini-wrapper" >
-             <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
+             <div class='nav-name mini' id='restaurants-button' onclick="window.location.href='./restaurants.php'"> Restaurants</div>
          </div>
-         <div class="mini-wrapper">
+
+	 <div class="mini-wrapper">
              <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> My Profile</div>
          </div>
      </div>
@@ -111,11 +114,11 @@ mysqli_close($conn);
      <div style="width:50%; top:10%; height:100%; position:fixed; left:0%;">
         <!-- restaurant info -->
         <div style="position:fixed; left:2%; width:50%; top:10%; margin:0px;"> 
-            <h1><?php echo $restaurant ?></h1>
-	    <h2><?php echo $rating ?>/5</h2>
-            <h3><?php echo 'Open Hours: '. $open_hour. '-'. $close_hour?></h3>
-            <h3><?php echo 'latitude: '. $latitude?></h3>
-            <h3><?php echo 'longitude: '. $longitude?></h3>
+            <h1 style="margin:0px;"><?php echo $restaurant. '    '. $rating. '/5' ?></h1>
+	    <span style="color:#4AC50;font-weight:bold; margin-top:2%;"><?php echo ' '.  $price. ' - '. $specialty?></span>
+            <h3 style="margin-top:1%;"><?php echo 'Hours: '. $open_hour. '-'. $close_hour?></h3>
+            <h3 style="width:30%;"><?php echo $address?></h3>
+	    <div style="width:33%;"><?php echo $description?></div>
         </div>
         <div id="map" style="position:fixed; height:40%; left:40%; width:50%; top:5%; margin:0px; background-color:black;">
         

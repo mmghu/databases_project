@@ -1,7 +1,10 @@
-\N,Rising Roll,38.037445,-84.505398,\NA,9,15,\NA,\NA
-\N,Einsteins Bagels,38.033213,-84.508938,\NA,7,14,\NA,\NA
-\N,Panda Express,38.041514,-84.498897,\NA,10,20,\NA,\NA
-\N,Chick-Fil-A,38.041540,-84.498897,\NA,10,20,\NA,\NA
-\N,Starbucks Willy-T,38.032914,-84.501997,\NA,7,20,\NA,\NA
-\N,K-Lair,38.032883,-84.503772,\NA,10,0,\NA,\NA
-\N,Subway,38.050015,-84.500021,\NA,8,15,\NA,\NA
+\N;Rising Roll;University of Kentucky Ralph G. Anderson Building, 512 Administration Dr, Lexington, KY 40508;38.037445;-84.505398;$;9;15;0;Sandwiches,Soups;Enjoy a selection of unique, gourmet sandwiches, salads, soups, and breakfast dishes made with the freshest ingredients every day!
+\N;Einsteins Bagels;631 S Limestone, Lexington, KY 40508;38.035245;-84.504001;$;7;14;0;Bagels,Coffee;Counter-service chain offering egg sandwiches, soups, salads, baked goods & a variety of bagels.
+\N;Panda Express;University of Kentucky Student Center, 160 Ave of Champions, Lexington, KY 40508;38.040508;-84.503834;$;10;20;0;American Chinese,Fast-Food;A fast, casual restaurant chain which serves American Chinese cuisine.
+\N;Chickfil-A;University of Kentucky Student Center, 160 Ave of Champions, Lexington, KY 40508;38.040500;-84.503824;$;10;20;0;Chicken Sandwiches,Fast-Food;An American fast food restaurant chain specializing in chicken sandwiches.
+\N;Starbucks Willy-T;University of Kentucky William T Young Library, 401 Hilltop Ave, Lexington, KY 40506;38.032914;-84.501997;$;7;20;0;Coffee, Pastries;Starbucks is an American coffee company and cofeehouse chain.
+\N;K-Lair;University of Kentucky, 373 Hilltop Ave, Lexington, KY 40508;38.032883;-84.503772;$;10;0;0;Chicken,Hamburgers;Kentucky Proud is a key element of our menu with beef, chicken tenders, bread, and more produced right here in Kentucky.
+\N;Subway;University of Kentucky Student Center, 160 Ave of Champions, Lexington, KY 40508;38.040492;-84.503814;$;8;15;0;Sandwiches,Fast-Food;Subway is a large submarine sandwich and salad chain.
+\N;girlsgirlsgirls;395 S Limestone #150, Lexington, KY 40508;38.041788;-84.503885;$;10;3;0;Burritos,Fast-Food;Late-nite burritos, house made tamales, quesadillas, fresh fried chips and snacks, rotating specials made fresh.
+\N;Chipotle;345 S Limestone, Lexington, KY 40508;38.042722;-84.502698;$;11;12;0;Burritos,Fast-Food;Large chain specializing in American-Mexican style burritos and burrito bowls.
+\N;BurgerFi;391 Rose St, Lexington, KY 40508;38.038186;-84.499563;$$;11;23;0;Burgers,Fast-Food;Casual chain focused on all-natural hamburgers, french fries, hot dogs, and custard.

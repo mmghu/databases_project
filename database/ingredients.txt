@@ -15,3 +15,8 @@ coffee,vegetable
 meatball,meat
 ham,meat
 bread,grain
+tortilla,grain
+lard,meat
+guacamole,vegetable
+salsa,vegetable
+mayonaise,dairy

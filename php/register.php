@@ -1,4 +1,11 @@
 <?php
+function success() {
+	echo '<script language="javascript">';
+	echo 'alert("You have been registered!");';
+	echo 'window.location.href="../pages/main.php";';
+	echo '</script>';
+}
+
 session_start();
 
 $username = trim($_POST["uname"]);
@@ -11,24 +18,30 @@ $DB = 'lexHealth';
 $conn = mysqli_connect('127.0.0.1', 'root', $Pass, $DB);
 
 if (!$conn) {
-    echo "Connection failed: ". mysqli_connect_error(). "\n";
+    error("Connection failed.");
 }
 else if(empty($username)) {
-    echo "Please enter a username.\n";
+    error("Please enter a username.");
 }
 else if(empty($fullname)) {
-    echo "Please enter a full name.\n";
+    error("Please enter a full name.");
 }
 else if(empty($password)) {
-    echo "Please enter a password.\n";
+    error("Please enter a password.");
 }
 else if($password != $re_password) {
-    echo "Please check your re-entered password.\n";
+	echo '<script language="javascript">';
+	echo 'alert("Please check your password confirmation.");';
+	echo 'window.location.href="../index.html";';
+	echo '</script>';
 }
 else {
     $search_query = "SELECT name FROM customer WHERE username = '$username'";
     if(mysqli_num_rows(mysqli_query($conn, $search_query)) === 1) {
-	echo "Username taken, please try another.\n";
+	echo '<script language="javascript">';
+	echo 'alert("Username has been taken, please try again.");';
+	echo 'window.location.href="../index.html";';
+	echo '</script>';
     }
     else {
     	$insert_query = "INSERT INTO customer (username, name, password) VALUES ('$username', '$fullname', '$password')";
@@ -36,10 +49,9 @@ else {
             $_SESSION["name"] = $fullname;
             $_SESSION["username"] = $username;
             $_SESSION["password"] = $password;
-            header("Location: ../pages/main.php");
+	    success();
     	}
         else {
-     	    echo "Registration failed, please try again.\n";
     	}
     }
 }

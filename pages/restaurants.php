@@ -17,7 +17,7 @@ session_start();
     
     <!-- js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/restaurants2.js"></script>
+    <script src="../js/restaurants.js"></script>
 </head>
 
 <body onload="loadRestaurants()">
@@ -26,18 +26,23 @@ session_start();
         <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
             <img id="icon" src="../css/images/icon.png" alt="lexHealth"/>
         </div>
-        <div id="search-div">
-            <input type="text" name="search" style="width:90%;">
-        </div>
-        <button type="submit" id="browse"> Browse</button>
         
-        <div class="mini-wrapper">
+	<h1 style="margin-top:5px;"><i>EatWell</i></h1>
+        <!--
+         <div id="search-div">
+             <input type="text" name="search" style="width:90%;">
+         </div>
+         <button type="submit" id="browse"> Browse</button>
+        -->
+
+     
+        <div class="mini-wrapper" style="margin-left:60%;">
             <div class='nav-name mini' id='plan-button' onclick="window.location.href='./plan.php'"> Plan</div>
         </div>
 
-        <div class="mini-wrapper" style='margin-left: 30%;'>
-            <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
-        </div>
+	<div class="mini-wrapper" >
+             <div class='nav-name mini' id='restaurants-button' onclick="window.location.href='./restaurants.php'"> Restaurants</div>
+         </div>
 
         <div class="mini-wrapper">
             <div class='nav-name mini' id='profile-button' onclick="window.location.href='./profile.php'"> My Profile</div>
@@ -48,3 +53,7 @@ session_start();
 </body>
 
 </html>
+
+<style>
+html{ overflow-y: scroll; }
+</style>

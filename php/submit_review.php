@@ -27,12 +27,14 @@ else {
 	    // review successfully submitted, update restaurant entry and navigate page
 	    $number_of_reviews = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS NumberOfReviews FROM reviews WHERE rid='$rid'"))['NumberOfReviews'];
 
-	    $new_rating = sprintf('%0.1f', ($rating + $original_rating) / $number_of_reviews);
+	    $sum_of_reviews = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(rating) AS TotalRating FROM reviews WHERE rid='$rid'"))['TotalRating'];
+
+	    $new_rating = sprintf('%0.1f', $sum_of_reviews / $number_of_reviews);
 	
 	    $update_query = mysqli_query($conn, "UPDATE restaurant SET rating='$new_rating' WHERE rid='$rid'");
 
 	    if($update_query) {
-		header("Location: ../../pages/restaurant.php?restaurant=".$restaurant."&number_of_reviews=".$number_of_reviews);
+		header("Location: ../../pages/restaurant.php?restaurant=".$restaurant);
 	    }
 	    else {
 		echo $update_query;
