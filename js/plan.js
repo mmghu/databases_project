@@ -3,9 +3,13 @@ var markers = [];
 var center; 
 var centerMarker;  
 var names = [];
+
 var timeArray; 
 var locationArray; 
 var restrictionArray;
+var timeMessage;
+var locationMessage;
+var restrictionMessage; 
 
 function load() {
     //initialize
@@ -60,9 +64,9 @@ function onSubmit() {
          timeArray = restaurants; 
          locationArray = restaurants; 
          restrictionArray = restaurants;
-         var timeMessage = "any time"; 
-         var locationMessage = "any distance"; 
-         var restrictionMessage = "no"; 
+         timeMessage = "any time"; 
+         locationMessage = "any distance"; 
+         restrictionMessage = "no"; 
 
          //entered time
          if(time.val()) { 
@@ -72,195 +76,113 @@ function onSubmit() {
              var hour = parseInt(timeSplit[0]);
              
              timeArray = [];
-             $.post("../php/restaurant_by_hour.php", {hour:hour},  function(data){
+             $.post("../php/restaurant_by_hour.php", {hour:hour},  function(data){ //begin time post
                  data.forEach(function(res, i) { 
                      timeArray.push(res['name']);
                  });
                  
                  //use restriciton
                  if(useRestriction.is(':checked')) {
-                    //get the user restrictions 
-                     $.post("../php/get_preferences.php", function(data){
-                         restrictions = [];
-                         data.forEach(function(res, i) {
-                             restrictions.push(res['ingredientName']);
-                         });
-                         
-                         if(restrictions.length > 0) {
-                            restrictionArray = [];
-                            $.post("../php/restaurant_by_restriction.php", {restrictions:restrictions}, function(data){
-                                var myarr = (data.split(',')).slice(0,-1);
-                                myarr.forEach(function(res, i) { 
-                                    restrictionArray.push(res);
-                                });
-                            });
-                         }
-                         
-                     });
-
-                     restrictionMessage = "your";
-
-                 }
-                 
-                 //use location
-                 if(useLocation.is(':checked')) {
-                     locationArray = [];
-
-                     var range = parseFloat($("input[name='range']:checked").val()); 
-                     myPos = centerMarker.getPosition();
-                     markers.forEach(function(marker, i) {
-                         var markerPos = marker.getPosition(); 
-                         if(getDistance(myPos, markerPos) < range) {
-                             locationArray.push(names[i]);
-                         }
-                     });
-
-                     locationMessage = range.toString() + " miles";
-                 }
-                 
-                 //see what restaurants meet all requirements
-                 var intersect = []; 
-                 names.forEach(function(name) {
-                     if(locationArray.includes(name) && timeArray.includes(name) && restrictionArray.includes(name)) {
-                         intersect.push(name);
-                     }
-                 });
-
-                //DISPLAY OUR BABIES ON THE SCREEN  
-                 searchText = "Restaurants that are open at " + timeMessage + " within " + locationMessage 
-                 + " of your location that have options friendly to " + restrictionMessage + " restrictions.";
-                 $("#criterea").text(searchText);  
-                 $("#criterea").css("visibility","visible");  
-                  
-                 intersect.forEach(function(name) { 
-                     //add a spot on the table
-                     $("#results").append(
-                             '<tr class = "row">' + 
-                             '<td class="resList"><p class="resText">' + name + '</p></td>' + 
-                             '<td class="userList"> <form action="../pages/restaurant.php?restaurant=' + name +
-                                '"><input type = "submit"class="littleLink" value="View"/></form> </td>' + 
-                             '</tr>' 
-                      );
-                  });
-             });
-    
-         }
+                    restriction(); 
+                 } // restriction IF
+                 else { //no restriciton
+                    //use location
+                    if(useLocation.is(':checked')) {
+                         locationSearch();
+                    }
+                     
+                    window.setTimeout(display(), 50);        
+                 }//end no restriction?  
+             });//end time post
+         } //end time
          else { //NO TIME
              //use restriciton
              if(useRestriction.is(':checked')) {
-                 restrictionMessage = "your";
-                //get the user restrictions 
-                 $.post("../php/get_preferences.php", function(data){
-                     restrictions = [];
-                     data.forEach(function(res, i) {
-                         restrictions.push(res['ingredientName']);
-                     });
-                     
-                     if(restrictions.length > 0) {
-                        restrictionArray = [];
-                        $.post("../php/restaurant_by_restriction.php", {restrictions:restrictions}, function(data){
-                            var myarr = (data.split(',')).slice(0,-1);
-                            myarr.forEach(function(res, i) { 
-                                restrictionArray.push(res);
-                            });
-                         //use location
-                         if(useLocation.is(':checked')) {
-                             locationArray = [];
-
-                             var range = parseFloat($("input[name='range']:checked").val()); 
-                             myPos = centerMarker.getPosition();
-                             markers.forEach(function(marker, i) {
-                                 var markerPos = marker.getPosition(); 
-                                 if(getDistance(myPos, markerPos) < range) {
-                                     locationArray.push(names[i]);
-                                 }
-                             });
-
-                             locationMessage = range.toString() + " miles";
-                         }
-                         
-                         //see what restaurants meet all requirements
-                         var intersect = []; 
-                         names.forEach(function(name) {
-                             if(locationArray.includes(name) && timeArray.includes(name) && restrictionArray.includes(name)) {
-                                 intersect.push(name);
-                             }
-                         });
-
-                         //DISPLAY OUR BABIES ON THE SCREEN  
-                         searchText = "Restaurants that are open at " + timeMessage + " within " + locationMessage 
-                         + " of your location that have options friendly to " + restrictionMessage + " restrictions.";
-                         $("#criterea").text(searchText);  
-                         $("#criterea").css("visibility","visible");  
-                          
-                         intersect.forEach(function(name) { 
-                             //add a spot on the table
-                             $("#results").append(
-                                     '<tr class = "row">' + 
-                                     '<td class="resList"><p class="resText">' + name + '</p></td>' + 
-                                     '<td class="userList"> <form action="../pages/restaurant.php?restaurant=' + name +
-                                        '"><input type = "submit"class="littleLink" value="View"/></form> </td>' + 
-                                     '</tr>' 
-                              );
-                          });
-
-                        });
-                     }
-                 });
+                restriction(); 
              }
-
-
              else{ //NO RESTRICTION
-                 //use location
                  if(useLocation.is(':checked')) {
-                     locationArray = [];
-
-                     var range = parseFloat($("input[name='range']:checked").val()); 
-                     myPos = centerMarker.getPosition();
-                     markers.forEach(function(marker, i) {
-                         var markerPos = marker.getPosition(); 
-                         if(getDistance(myPos, markerPos) < range) {
-                             locationArray.push(names[i]);
-                         }
-                     });
-
-                     locationMessage = range.toString() + " miles";
+                      locationSearch();
                  }
-                 
-                 //see what restaurants meet all requirements
-                 var intersect = []; 
-                 names.forEach(function(name) {
-                     if(locationArray.includes(name) && timeArray.includes(name) && restrictionArray.includes(name)) {
-                         intersect.push(name);
-                     }
-                 });
-
-                 //DISPLAY OUR BABIES ON THE SCREEN  
-                 searchText = "Restaurants that are open at " + timeMessage + " within " + locationMessage 
-                 + " of your location that have options friendly to " + restrictionMessage + " restrictions.";
-                 $("#criterea").text(searchText);  
-                 $("#criterea").css("visibility","visible");  
                   
-                 intersect.forEach(function(name) { 
-                     //add a spot on the table
-                     $("#results").append(
-                             '<tr class = "row">' + 
-                             '<td class="resList"><p class="resText">' + name + '</p></td>' + 
-                             '<td class="userList"> <form action="../pages/restaurant.php?restaurant=' + name +
-                                '"><input type = "submit"class="littleLink" value="View"/></form> </td>' + 
-                             '</tr>' 
-                      );
-                  });
+                 window.setTimeout(display(), 50);        
              }
-                     
-             
          }
 
     });
 }
 
 
-function restrictionSearch(restrictions) {
+function restriction() {
+    var useLocation = $('input[name=location_box]'); 
+
+    restrictionMessage = "your";
+    //get the user restrictions 
+     $.post("../php/get_preferences.php", function(data){
+         restrictions = [];
+         data.forEach(function(res, i) {
+             restrictions.push(res['ingredientName']);
+         });
+         
+         if(restrictions.length > 0) {
+            restrictionArray = [];
+            $.post("../php/restaurant_by_restriction.php", {restrictions:restrictions}, function(data){
+                var myarr = (data.split(',')).slice(0,-1);
+                myarr.forEach(function(res, i) { 
+                    restrictionArray.push(res);
+                });
+             
+                //use location
+                if(useLocation.is(':checked')) {
+                     locationSearch();
+                }
+                 
+                window.setTimeout(display(), 100);        
+            }); //restarautn restriction
+         } //restrictions length
+     }); //restrictions get
+} //function
+
+function locationSearch() {
+    locationArray = [];
+    
+    var range = parseFloat($("input[name='range']:checked").val()); 
+    myPos = centerMarker.getPosition();
+    markers.forEach(function(marker, i) {
+        var markerPos = marker.getPosition(); 
+        if(getDistance(myPos, markerPos) < range) {
+            locationArray.push(names[i]);
+        }
+    });
+
+    locationMessage = range.toString() + " miles";
+}
+
+function display() {
+      //see what restaurants meet all requirements
+      var intersect = []; 
+      names.forEach(function(name) {
+          if(locationArray.includes(name) && timeArray.includes(name) && restrictionArray.includes(name)) {
+              intersect.push(name);
+          }
+      });
+      
+      //DISPLAY OUR BABIES ON THE SCREEN  
+      searchText = "Restaurants that are open at " + timeMessage + " within " + locationMessage 
+      + " of your location that have options friendly to " + restrictionMessage + " restrictions.";
+      $("#criterea").text(searchText);  
+      $("#criterea").css("visibility","visible");  
+       
+      intersect.forEach(function(name) { 
+          //add a spot on the table
+          $("#results").append(
+                  '<tr class = "row">' + 
+                  '<td class="resList"><p class="resText">' + name + '</p></td>' + 
+                  '<td class="userList"> <form  method="get" action="../pages/restaurant.php?restaurant=' + name +
+                     '"><input type = "submit"class="littleLink" value="View"/></form> </td>' + 
+                  '</tr>' 
+           );
+      });
 }
 
 

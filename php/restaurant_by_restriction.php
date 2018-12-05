@@ -59,7 +59,10 @@ else {
                 $final_values[] = $restaurant; 
             }
         }
-        print json_encode($final_values);
+        
+        foreach($final_values as $viable){
+            echo $viable,",";
+        }
     }
     else {
         echo "ERROR";
