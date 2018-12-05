@@ -117,9 +117,9 @@ function loadPreferences(username) {
                     '<td class="userList">' + res['foodGroup']  + '</td>' +
                     '<td class="userList"> <img class="trash" src="../css/images/trash.png" onclick="deletePreference(\''+
                          username + '\',\'' + 
-                         res['ingredientName'] + '\',' + 
+                         res['ingredientName'] + '\',\'' + 
                          res['foodGroup'] + 
-                        ')"> </td>' +
+                        '\')"> </td>' +
                     '</tr>' 
              );
         });

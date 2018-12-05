@@ -13,9 +13,9 @@ if (!$conn) {
 }
 else {
     // check username
-    $query = "DELETE FROM restriction WHERE username = '$username' AND ingredientName = '$ingredientName' AND foodGroup = $foodGroup";
+    $query = "DELETE FROM restrictions WHERE username = '$username' AND ingredientName = '$ingredientName' AND foodGroup = '$foodGroup'";
     if(!$result = mysqli_query($conn,$query)) {
-	echo "Query failed: ". $mysqli->error. "\n";
+	echo $query;
     }
 }
 mysqli_close($conn);

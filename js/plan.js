@@ -178,7 +178,7 @@ function display() {
           $("#results").append(
                   '<tr class = "row">' + 
                   '<td class="resList"><p class="resText">' + name + '</p></td>' + 
-                  '<td class="userList"> <form  method="get" action="../pages/restaurant.php?restaurant=' + name +
+                  '<td class="userList"> <form  method="post" action="../pages/restaurant.php?restaurant=' + name +
                      '"><input type = "submit"class="littleLink" value="View"/></form> </td>' + 
                   '</tr>' 
            );
