@@ -41,7 +41,8 @@ mysqli_close($conn);
          <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
              <img id="icon" src="../css/images/icon.png" alt="lexHealth"/>
          </div>
-
+        
+         <h1 style="margin-top:5px;"><i>EatWell</i></h1>
         <!--
          <div id="search-div">
              <input type="text" name="search" style="width:90%;">
