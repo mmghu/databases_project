@@ -31,24 +31,30 @@ mysqli_close($conn);
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRvaTL4If1SfVTXDalSe9aJwU7TQzP8D8">
     </script>
 
+
+
 </head>
 
 <body onload="load()">
-	<!-- nav bar -->
+    <!-- nav bar -->
      <div class="top-bar">
          <div class='nav-name' id='home-button' onclick="window.location.href='./main.php'">
              <img id="icon" src="../css/images/icon.png" alt="lexHealth"/>
          </div>
+
+        <!--
          <div id="search-div">
              <input type="text" name="search" style="width:90%;">
          </div>
          <button type="submit" id="browse"> Browse</button>
-        
-        <div class="mini-wrapper">
+        -->
+            
+     
+        <div class="mini-wrapper" style="margin-left:60%;">
             <div class='nav-name mini' id='plan-button' onclick="window.location.href='./plan.php'"> Plan</div>
         </div>
 
-         <div class="mini-wrapper" style='margin-left: 30%;'>
+         <div class="mini-wrapper" >
              <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
          </div>
          <div class="mini-wrapper">
@@ -56,23 +62,45 @@ mysqli_close($conn);
          </div>
      </div>
 
-    <div style="top:10%; left:2.5%;  position:fixed; margin:auto; width:45%; text-align:center; height:80%; border-style:solid;">
-       <h1>Plan your meal</h1> 
+    <div style="top:10%; left:2.5%;  position:fixed; margin:0; width:45%; text-align:center; height:80%; border-style:solid;">
+       <h1 style="margin:0px;">Plan your meal</h1> 
         <!--time-->
-       <h2>When are you eating?</h2>
-        <input type="time" name="time" min="0:00" max="24:00" required> 
+       <h2 style="margin:0px;">When are you eating?</h2>
+        <input type="time" id="time" min="0:00" max="24:00"> 
         
         <!--location-->
-       <h2 style="display:inline; ">Use your location? </h2> 
-       <input type="checkbox" style="display:inline;" name="location"> 
-        <div id="map" style="height:25%; width:60%; display:inline-block; background-color:black; "> </div>
+        <!--use user location-->
+        <h2 style="margin:0px;">Use your location? </h2>
+        <label class="switch" >
+          <input type="checkbox" name="location_box">
+          <span class="slider" ></span>
+        </label>
+        <br>
+        <!--choose range of restaurants within location--> 
+        <input class ="ranges" type="radio" name="range" checked="checked" value=1>
+        <p style="display:inline-block;" class="ranges"> 1 Mile</p>
+        <input class ="ranges" type="radio" name="range" value=5> 
+        <p style="display:inline-block;" class="ranges">5 Mile</p>
+        <input class ="ranges" type="radio" name="range" value=10> 
+        <p style="display:inline-block;" class="ranges">5+ Mile</p>
+        <br>
+        <!-- map-->
+        <div id="map" style="height:25%; width:60%; display:inline-block; margin-top:20px;  background-color:black; "> </div>
+       
+        <!-- include restrictions? -->  
+        <h3>Include my restrictions?</h3>
+        <label  class="switch">
+          <input type="checkbox" name="user_restrictions">
+          <span class="slider"></span>
+        </label>
          
-        <!--restriction-->
-       <h2>Dietary restrictions </h2>
+        <br>
+        <button type="submit" id="submit" onclick="onSubmit()" style="width:80%; height:10%; display:inline-block; margin:10px;">Plan!</button>
     </div>
 
-    <div id="display" style="border-style:solid; width:45%; position:fixed; top:10%; right:2.5%; height:80%; ">
-
+    <div id="display" style="border-style:solid; text-align:center; width:45%; position:fixed; top:10%; right:2.5%; height:80%; padding:0px;">
+        <h2 id="criterea" style="height:30%; width:90%; display:inline-block; "> </h2>
+        <table id="results" style="height:60%; width:90%; border-style:solid; display:inline-block;"> </table>
     </div>`
 </body>
 

@@ -2,10 +2,17 @@ var map;
 var markers = []; 
 
 function loadMain() {
-    //initialize
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 38.033457, lng: -84.502789},
-        zoom: 15 });     
+        zoom: 15 });    
+ 
+    //initialize
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
 
     //mark all the restaurants on map
     $.post("../php/get_restaurants.php", function(data){
@@ -40,8 +47,8 @@ function success(position) {
     //center at the user's coordinate
     var lat = position.coords.latitude; 
     var lon = position.coords.longitude; 
-//    var center = new google.maps.LatLng(lat, lon); 
-//    map.panTo(center);
+    var center = new google.maps.LatLng(lat, lon); 
+   map.panTo(center);
 }
 
 

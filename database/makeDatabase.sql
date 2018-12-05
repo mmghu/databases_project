@@ -18,15 +18,16 @@ FIELDS TERMINATED BY ',';
 
 CREATE TABLE restaurant 
 	(
-	rid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	name VARCHAR(20),
+	rid INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
 	latitude VARCHAR(40),
 	longitude VARCHAR(40),
 	priceRating FLOAT,
 	openHour INT,
 	closeHour INT, 
 	rating FLOAT, 
-	specialty VARCHAR(20) 
+	specialty VARCHAR(20), 
+        PRIMARY KEY(rid, name)
 	);
 
 LOAD DATA LOCAL INFILE './restaurants.txt'
@@ -79,9 +80,6 @@ CREATE TABLE reviews
 	rating INT NOT NULL, 
 	review VARCHAR(250)
 );
-LOAD DATA LOCAL INFILE './reviews.txt'
-INTO TABLE reviews
-FIELDS TERMINATED BY ',';
 
 CREATE TABLE favorites
 (

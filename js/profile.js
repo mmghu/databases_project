@@ -109,7 +109,7 @@ function loadPreferences(username) {
           '</tr>' 
     );
 
-    $.post("../php/get_preferences.php", {username:username}, function(data){
+    $.post("../php/get_preferences.php",  function(data){
         data.forEach(function(res, i) { 
             $("#preferenceList").append(
                     '<tr class="row">' + 

@@ -36,11 +36,11 @@ session_start();
         </div>
         <button type="submit" id="browse"> Browse</button>
         
-        <div class="mini-wrapper">
+        <div class="mini-wrapper" style="margin-left:20%;">
             <div class='nav-name mini' id='plan-button' onclick="window.location.href='./plan.php'"> Plan</div>
         </div>
 
-        <div class="mini-wrapper" style='margin-left: 30%;'>
+        <div class="mini-wrapper" >
             <div class='nav-name mini' id='restaurants-button'>Restaurants</div>
         </div>
 
